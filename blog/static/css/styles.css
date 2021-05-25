@@ -1,0 +1,81 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 10px;
+    list-style: none;
+}
+.header {
+    padding: 0px;
+    list-style: none;
+    background-color:rgb(231, 231, 231);
+
+}
+
+.footer {
+    list-style: none;
+    background-color:darkgray;
+    /*position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;*/
+    /* Height of the footer*/ 
+    height: 40px;
+
+    
+}
+
+.body {
+    /* background: url(../withdrawal/sfondo_home.jpg);  */
+    background-color:rgb(190, 190, 190);
+}
+
+.backg {
+    background-color:darkolivegreen;
+}
+h1 { 
+    text-decoration: underline;
+}
+
+#t01 {
+    border: 3px blue;
+  }
+
+table, th, tr, td {
+    border: 1px solid rgb(0, 0, 0);
+    padding: 5px;
+  }
+
+.calendar {
+    width: 98%;
+    margin: auto;
+    font-size: 15px;
+  }
+  
+.calendar tr, .calendar td , .calendar th {
+    border: 1px solid rgb(0, 0, 0);
+  }
+  
+.calendar th {
+    padding: 5px;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+.calendar td {
+    width: 200px;
+    height: 100px;
+    padding: 20px 0px 0px 5px;
+  }
+  
+.month {
+    font-size: 25px;
+  }
+  
+.date {
+    font-size: 16px;
+  }
+  
+.calendar ul {
+    height: 100%;
+    padding: 0px 5px 0px 20px;
+  }
+  

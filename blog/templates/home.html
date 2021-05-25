@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Lingueglietta</h1>
+  <p>Welcome to Lingueglietta, a website developed by <em>GPF</em>!</p>
+  
+  {{now}}
+
+  {% load static %}
+  <p></p>
+<img src="{% static 'blog/sfondo_home.jpg' %}" width="1200" alt="Home Image">
+<p></p>
+
+{% endblock %}
+
+
