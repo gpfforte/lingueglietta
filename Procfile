@@ -1,1 +1,1 @@
-web: gunicorn transport.wsgi
+web: gunicorn lingueglietta.wsgi
