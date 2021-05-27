@@ -29,7 +29,7 @@
 </head>
 
 <body class="body">
-  <div class="container-fluid ">
+  <div class="container-fluid">
     <!-- HEADER -->
     <header class="header border border-secondary">
       <h5>Django Training</h5>
@@ -44,7 +44,15 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="{% url 'index' %}">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog-home' %}">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog-about' %}">About</a>
           </li>
         </ul>
         {% if user.is_authenticated %}
