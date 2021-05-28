@@ -6,13 +6,13 @@
 .header {
     padding: 0px;
     list-style: none;
-    background-color:#d3f8db;
+    /* background-color:#d3f8db; */
 
 }
 
 .footer {
     list-style: none;
-    background-color:#d3f8db;
+    /* background-color:#d3f8db; */
     /*position: fixed;
     padding: 10px 10px 0px 10px;
     bottom: 0;
@@ -24,7 +24,9 @@
 }
 
 .body {
-    background-color:#f4f7d6;
+    /* background-color:#f4f7d6; */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5) );
+    /* background-image: url(background_water.gif); */
 }
 
 .backg {

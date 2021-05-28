@@ -11,12 +11,22 @@ def index(request):
 
     return render(request, 'index.html', context=context)
 
+
+
 def home(request):
     context = {
         'posts': Post.objects.all()
     }
-    return render(request, 'blog/blog_home.html', context)
+    return render(request, 'blog/blog_home.html', context=context)
 
 
 def about(request):
     return render(request, 'blog/blog_about.html', {'title': 'About'})
+
+def poesia(request):
+
+    return render(request, 'poesia.html')
+
+def percorsi(request):
+
+    return render(request, 'percorsi.html')

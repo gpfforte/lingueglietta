@@ -22,6 +22,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('poesia/', views.poesia, name='poesia'),
+    path('percorsi/', views.percorsi, name='percorsi'),
 ]
 
 urlpatterns += [
