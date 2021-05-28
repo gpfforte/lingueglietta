@@ -108,8 +108,12 @@ if DJANGO_DB_LOCALE == "True":
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-elif DEBUG:
-    # Questa configurazione sotto è necessaria se si vuole accedere al DB da locale, con DJANGO_DEBUG_KEY <> "True",
+else:
+    # Configurazione che viene utilizzata dalla macchina Heroku per la quale DEBUG == False e Locale == False
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
+if DJANGO_DB_LOCALE == "False" and DEBUG:
+    # Questa configurazione sotto è necessaria se si vuole accedere al DB Remoto da locale, con DJANGO_DEBUG_KEY = "True",
     # mentre la parte DATABASES['default'] = dj_database_url.config(conn_max_age=600) utilizza una variabile d'ambiente su Heroku
     # che è DATABASE_URL, questo è necessario perché i parametri di connessione al DB potrebbero cambiare come da
     # documentazione di Heroku
@@ -140,10 +144,7 @@ elif DEBUG:
 
     # }
     pass
-else:
-    # Configurazione che viene utilizzata dalla macchina Heroku per la quale DEBUG == False e Locale == False
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
