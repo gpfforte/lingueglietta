@@ -6,6 +6,8 @@ from . import views
 
 urlpatterns = [
     
-    path('', views.home, name='blog-home'),
-    path('about/', views.about, name='blog-about'),
+    path('', views.PostList.as_view(), name='blog-home'),
+    path('create/', views.PostCreate.as_view(), name='post-create'),
+    path('detail/<int:pk>', views.PostDetail.as_view(), name='post-detail'),
+    
 ]

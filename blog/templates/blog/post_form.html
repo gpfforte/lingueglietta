@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <form class="row">
+        {%for item in form%}
+        <a style="padding:10px"></a>{{item|as_crispy_field}}
+        {%endfor%}
+        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-sm" class>Back</a>
+      <input type="submit" class="btn btn-primary btn-sm" value="Salva">
+    </form>
+    
+  </form>
+  
+{% endblock %}

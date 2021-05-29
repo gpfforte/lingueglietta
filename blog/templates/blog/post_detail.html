@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<p>{{post.author}}  &NonBreakingSpace; &NonBreakingSpace;{{ post.date_posted|date:"d F Y" }}</p>
+<h2><p class="article-title">{{post.title}} </p></h2>
+<p>{{post.content }}</p>
+
+
+    
+<a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-sm" class>Back</a>
+  
+{% endblock %}
