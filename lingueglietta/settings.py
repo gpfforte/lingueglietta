@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
              # Add our new application
     'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
     'crispy_forms',
     'django.contrib.staticfiles',
 ]

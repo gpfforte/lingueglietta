@@ -15,21 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from blog import views
+from blog import views as blog_views
 from django.conf.urls.static import static
 from django.conf import settings
+from users import views as users_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('poesia/', views.poesia, name='poesia'),
-    path('percorsi/', views.percorsi, name='percorsi'),
-    path('about/', views.about, name='blog-about'),
+    path('', blog_views.index, name='index'),
+    path('poesia/', blog_views.poesia, name='poesia'),
+    path('percorsi/', blog_views.percorsi, name='percorsi'),
+    path('about/', blog_views.about, name='about'),
 ]
 
 urlpatterns += [
     path('blog/', include('blog.urls')),
 ]
+
+urlpatterns += [
+    path('users/', include('users.urls')),
+]
+
 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -41,3 +48,8 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
+urlpatterns += [
+    path('password/', users_view.change_password, name='change_password'),
+]
+
