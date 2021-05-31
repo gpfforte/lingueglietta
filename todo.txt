@@ -1,7 +1,9 @@
 Aggiungere commenti ai post solo da registrati e solo l'utente che li ha scritti può cancellarli o modificarli
-Farli vedere nei dettagli
+Far vedere commenti nei dettagli
 Gestire appname per gli URL
-Fare form di registrazione con invio email per confermare indirizzo email
-Cambiare messaggio quando si invia email per completare registrazione e quando si attiva l'account
+
+FATTO
 
 Fatto - Fare cambio password oltre al reset
+Fatto - Fare form di registrazione con invio email per confermare indirizzo email
+Fatto - Mettere template quando si invia email per completare registrazione e quando si attiva l'account
