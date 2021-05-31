@@ -23,6 +23,8 @@
   </form>
 
   {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
+  <p></p>
+  <p><a href="{% url 'password_reset' %}">Password Dimenticata?</a></p>
+  Se non hai un account: <a href="{% url 'signup' %}">Registrati</a>
+  <p></p>
 {% endblock %}

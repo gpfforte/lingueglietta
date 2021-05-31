@@ -15,21 +15,22 @@ from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
-            messages.success(request, _('Your password was successfully updated!'))
-            return redirect('index')
-        else:
-            messages.error(request, _('Please correct the error below.'))
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'users/change_password.html', {
-        'form': form
-    })
+# def change_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             update_session_auth_hash(request, user)
+#             messages.success(request, _('Your password was successfully updated!'))
+#             return redirect('index')
+#         else:
+#             messages.error(request, _('Please correct the error below.'))
+#     else:
+#         form = PasswordChangeForm(request.user)
+#     return render(request, 'users/change_password.html', {
+#         'form': form
+#     })
+
 
 def signup(request):
     if request.method == 'POST':
@@ -44,13 +45,13 @@ def signup(request):
             message = render_to_string('users/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':account_activation_token.make_token(user),
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
             })
             print(message, user, user.pk)
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(
-                        mail_subject, message, to=[to_email]
+                mail_subject, message, to=[to_email]
             )
             email.send()
             return render(request, 'users/signup_email.html', {'message': _('Please confirm your email address to complete the registration')})
@@ -58,6 +59,7 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, 'users/signup.html', {'form': form})
+
 
 def activate(request, uidb64, token):
     try:

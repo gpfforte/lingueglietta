@@ -10,14 +10,17 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
 # Create your views here.
 
+
 class PostListView(generic.ListView):
     model = Post
     ordering = ['-date_posted']
     fields = "__all__"
     paginate_by = 10
 
+
 class PostDetailView(generic.DetailView):
     model = Post
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -27,6 +30,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -43,6 +47,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('post-list')
@@ -53,19 +58,23 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+
 def index(request):
     now = datetime.now()
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
-    context={"now": now, "num_visits": num_visits}
+    context = {"now": now, "num_visits": num_visits}
     return render(request, 'index.html', context=context)
+
 
 def about(request):
     return render(request, 'about.html', {'title': 'About'})
 
+
 def poesia(request):
     return render(request, 'poesia.html')
+
 
 def percorsi(request):
     return render(request, 'percorsi.html')

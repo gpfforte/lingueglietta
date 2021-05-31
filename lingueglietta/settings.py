@@ -45,21 +45,22 @@ else:
     DEBUG = False
 
 
-ALLOWED_HOSTS = ["localhost","lingueglietta.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "lingueglietta.herokuapp.com"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-             # Add our new application
-    'blog.apps.BlogConfig',
-    'users.apps.UsersConfig',
-    'crispy_forms',
+    # Add our new application
+
     'django.contrib.staticfiles',
 ]
 
@@ -179,7 +180,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -203,7 +203,6 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_HOST_USER")
 SERVER_EMAIL = os.environ.get("EMAIL_HOST_USER")
-
 
 
 LOGIN_URL = "/accounts/login"
