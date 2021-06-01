@@ -1,5 +1,5 @@
 {% extends "base_generic.html" %}
-
+{% load crispy_forms_tags %}
 
 {% block content %}
   <article class="media content-section">
@@ -18,6 +18,33 @@
       </div>
       <h2 class="article-title">{{ object.title }}</h2>
       <p class="article-content">{{ object.content }}</p>
+
+        {% if user.is_authenticated%}
+        <div>
+            <form method="POST" class="post-form">{% csrf_token %}
+              {%for item in form%}
+              <a style="padding:10px"></a>{{item|as_crispy_field}}
+              {%endfor%}
+              <button type="submit" class="save btn btn-primary">Send Comment</button>
+            </form>
+        </div>
+        {% endif%}
+        <div class=" row post_spacing background_design1 ">
+            <hr>
+            {% for comment in post.comment_set.all %}
+                <div class=" col-md-12 comment">
+                    <div class="date">{{ comment.published_date }}</div>
+                    <strong>{{ comment.author }}</strong>
+                    <p>{{ comment.content|linebreaks }}</p>
+                </div>
+            {% empty %}
+                <p>No comments here yet :(</p>
+            {% endfor %}
+        </div>
+
+
+
+
       <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-sm mt-1 mb-1" class>Back</a>
     </div>
 

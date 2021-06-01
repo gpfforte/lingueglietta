@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from datetime import datetime
-from .models import Post
+from .models import Post, Comment
+from .form import CommentForm
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from django.views.generic.edit import FormMixin
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
@@ -18,8 +20,35 @@ class PostListView(generic.ListView):
     paginate_by = 10
 
 
-class PostDetailView(generic.DetailView):
+class PostDetailView(FormMixin, generic.DetailView):
     model = Post
+    form_class = CommentForm
+
+    def get_success_url(self):
+        # return reverse('post-list')
+        return reverse('post-detail', kwargs={'pk': self.object.id})
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        context['form'] = CommentForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        post = self.get_object()
+        author = self.request.user
+        myform = form.save(commit=False)
+        myform.post = post
+        myform.author = author
+        form.save()
+        return super(PostDetailView, self).form_valid(form)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
