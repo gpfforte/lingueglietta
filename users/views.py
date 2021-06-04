@@ -15,22 +15,6 @@ from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
-# def change_password(request):
-#     if request.method == 'POST':
-#         form = PasswordChangeForm(request.user, request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             update_session_auth_hash(request, user)
-#             messages.success(request, _('Your password was successfully updated!'))
-#             return redirect('index')
-#         else:
-#             messages.error(request, _('Please correct the error below.'))
-#     else:
-#         form = PasswordChangeForm(request.user)
-#     return render(request, 'users/change_password.html', {
-#         'form': form
-#     })
-
 
 def signup(request):
     if request.method == 'POST':
@@ -48,7 +32,7 @@ def signup(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
-            print(message, user, user.pk)
+            # print(message, user, user.pk)
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(
                 mail_subject, message, to=[to_email]

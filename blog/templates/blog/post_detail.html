@@ -16,29 +16,39 @@
         {% endif %}
         
       </div>
+      
       <h2 class="article-title">{{ object.title }}</h2>
-      <p class="article-content">{{ object.content }}</p>
-
+      <div class= "border border-primary rounded ">
+      <p class="article-content">{{ object.content|linebreaks }}</p>
+      </div>
         {% if user.is_authenticated%}
         <div>
             <form method="POST" class="post-form">{% csrf_token %}
               {%for item in form%}
               <a style="padding:10px"></a>{{item|as_crispy_field}}
               {%endfor%}
-              <button type="submit" class="save btn btn-primary">Send Comment</button>
+              <button type="submit" class="save btn btn-primary">Invia Commento</button>
             </form>
         </div>
         {% endif%}
+        <hr>
+        <h4>Commenti Precedenti</h4>
+                <hr>
         <div class=" row post_spacing background_design1 ">
             <hr>
             {% for comment in post.comment_set.all %}
                 <div class=" col-md-12 comment">
-                    <div class="date">{{ comment.published_date }}</div>
-                    <strong>{{ comment.author }}</strong>
-                    <p>{{ comment.content|linebreaks }}</p>
+                
+                    <div class="date">Data Commento: <strong> {{ comment.published_date }}</strong>
+                    Autore Commento: <strong> {{ comment.author }}</strong>
+                    </div>
+                    
+                    <p>Commento: <i> {{ comment.content|linebreaks }}</i></p>
+                      <hr>  
                 </div>
+
             {% empty %}
-                <p>No comments here yet :(</p>
+                <p>Non sono presenti commenti</p>
             {% endfor %}
         </div>
 
