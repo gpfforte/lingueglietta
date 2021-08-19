@@ -100,52 +100,21 @@ WSGI_APPLICATION = 'lingueglietta.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {}
-DJANGO_DB_LOCALE = os.environ.get("DJANGO_DB_LOCALE")
+DJANGO_DB_ENGINE = os.environ.get("DJANGO_DB_ENGINE")
 
-if DJANGO_DB_LOCALE == "True":
-
+if DJANGO_DB_ENGINE == "SQLITE":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-else:
+
+# Connessione da Carli a DB Postgres su macchina Carli
+if DJANGO_DB_ENGINE == "POSTGRESQL_DA_HEROKU_SU_HEROKU":
     # Configurazione che viene utilizzata dalla macchina Heroku per la quale DEBUG == False e Locale == False
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
-if DJANGO_DB_LOCALE == "False" and DEBUG:
-    # Questa configurazione sotto è necessaria se si vuole accedere al DB Remoto da locale, con DJANGO_DEBUG_KEY = "True",
-    # mentre la parte DATABASES['default'] = dj_database_url.config(conn_max_age=600) utilizza una variabile d'ambiente su Heroku
-    # che è DATABASE_URL, questo è necessario perché i parametri di connessione al DB potrebbero cambiare come da
-    # documentazione di Heroku
-    # ****************************************
-    # DB_POSTGRESQL_NAME = os.environ.get("DB_POSTGRESQL_NAME")
-    # DB_POSTGRESQL_USER = os.environ.get("DB_POSTGRESQL_USER")
-    # DB_POSTGRESQL_PWD = os.environ.get("DB_POSTGRESQL_PWD")
-    # DB_POSTGRESQL_HOST = os.environ.get("DB_POSTGRESQL_HOST")
-    # DB_POSTGRESQL_PORT = os.environ.get("DB_POSTGRESQL_PORT")
-    # # ****************************************
-    # DATABASES = {
-
-    #     'default': {
-
-    #         'ENGINE': "django.db.backends.postgresql_psycopg2",
-
-    #         'NAME': DB_POSTGRESQL_NAME,
-
-    #         'USER': DB_POSTGRESQL_USER,
-
-    #         'PASSWORD': DB_POSTGRESQL_PWD,
-
-    #         'HOST': DB_POSTGRESQL_HOST,
-
-    #         'PORT': DB_POSTGRESQL_PORT,
-
-    #     }
-
-    # }
-    pass
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
