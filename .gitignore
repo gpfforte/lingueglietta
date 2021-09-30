@@ -4,3 +4,5 @@ secrets.json
 media
 secrets.txt
 staticfiles
+.env
+*.bak
