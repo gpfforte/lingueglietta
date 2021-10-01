@@ -6,3 +6,5 @@ secrets.txt
 staticfiles
 .env
 *.bak
+db.sqlite3
+db.sqlite3

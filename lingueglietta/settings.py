@@ -45,7 +45,7 @@ else:
     DEBUG = False
 
 
-ALLOWED_HOSTS = ["localhost", "lingueglietta.herokuapp.com"]
+ALLOWED_HOSTS = ["172.104.245.4", "localhost", "lingueglietta.herokuapp.com"]
 
 
 # Application definition
@@ -163,9 +163,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Questo serve per scrivere la mail nella console
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'
+if os.environ.get("SERVER_RUNNING") == "LINODE":
+    # Questo serve per scrivere la mail nella console
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get("EMAIL_HOST_SERVER")  # 'smtp.office365.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
