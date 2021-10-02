@@ -165,7 +165,9 @@ LOGIN_REDIRECT_URL = '/'
 
 if os.environ.get("SERVER_RUNNING") == "LINODE":
     # Questo serve per scrivere la mail nella console
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'email')
+    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ.get("EMAIL_HOST_SERVER")  # 'smtp.office365.com'
