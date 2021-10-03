@@ -14,9 +14,11 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-
+import logging
+logger = logging.getLogger("lingueglietta")
 
 def signup(request):
+    logger.info(str(request))
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -46,6 +48,7 @@ def signup(request):
 
 
 def activate(request, uidb64, token):
+    logger.info(str(request))
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
