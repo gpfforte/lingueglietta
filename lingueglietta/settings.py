@@ -214,6 +214,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOG_FILE_PATH = os.path.join(BASE_DIR, 'log')
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -236,7 +238,7 @@ LOGGING = {
         'filerotate': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': 'debug.log',
+            'filename': BASE_DIR / 'debug.log',
             'formatter': 'verbose',
             'maxBytes': 1024*1024*15, # 15MB
             'backupCount': 10,
