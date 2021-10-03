@@ -115,6 +115,32 @@ if DJANGO_DB_ENGINE == "POSTGRESQL_DA_HEROKU_SU_HEROKU":
     # Configurazione che viene utilizzata dalla macchina Heroku per la quale DEBUG == False e Locale == False
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
+if DJANGO_DB_ENGINE == "LINODEPOSTGRESQL": # Connessione a db Postgres non da Heroku Connessione da Carli a DB Postgres su macchina Carli
+        DB_POSTGRESQL_NAME = os.environ.get("DB_POSTGRESQL_NAME")
+        DB_POSTGRESQL_USER = os.environ.get("DB_POSTGRESQL_USER")
+        DB_POSTGRESQL_PWD = os.environ.get("DB_POSTGRESQL_PWD")
+        DB_POSTGRESQL_HOST = os.environ.get("DB_POSTGRESQL_HOST")
+        DB_POSTGRESQL_PORT = os.environ.get("DB_POSTGRESQL_PORT")
+        # ****************************************
+        DATABASES = {
+
+            'default': {
+
+                'ENGINE': "django.db.backends.postgresql_psycopg2",
+
+                'NAME': DB_POSTGRESQL_NAME,
+
+                'USER': DB_POSTGRESQL_USER,
+
+                'PASSWORD': DB_POSTGRESQL_PWD,
+
+                'HOST': DB_POSTGRESQL_HOST,
+
+                'PORT': DB_POSTGRESQL_PORT,
+
+            }
+
+        }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
