@@ -45,7 +45,8 @@ else:
     DEBUG = False
 
 
-ALLOWED_HOSTS = ["172.104.245.4", "localhost", "lingueglietta.herokuapp.com"]
+ALLOWED_HOSTS = ["www.lingueglietta.it", "www.lingueglietta.com", ".lingueglietta.com", ".lingueglietta.it",
+                 "172.104.245.4", "localhost", "lingueglietta.herokuapp.com", "lingueglietta.com", "lingueglietta.it"]
 
 
 # Application definition
@@ -115,32 +116,33 @@ if DJANGO_DB_ENGINE == "POSTGRESQL_DA_HEROKU_SU_HEROKU":
     # Configurazione che viene utilizzata dalla macchina Heroku per la quale DEBUG == False e Locale == False
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
-if DJANGO_DB_ENGINE == "LINODEPOSTGRESQL": # Connessione a db Postgres non da Heroku Connessione da Carli a DB Postgres su macchina Carli
-        DB_POSTGRESQL_NAME = os.environ.get("DB_POSTGRESQL_NAME")
-        DB_POSTGRESQL_USER = os.environ.get("DB_POSTGRESQL_USER")
-        DB_POSTGRESQL_PWD = os.environ.get("DB_POSTGRESQL_PWD")
-        DB_POSTGRESQL_HOST = os.environ.get("DB_POSTGRESQL_HOST")
-        DB_POSTGRESQL_PORT = os.environ.get("DB_POSTGRESQL_PORT")
-        # ****************************************
-        DATABASES = {
+# Connessione a db Postgres non da Heroku Connessione da Carli a DB Postgres su macchina Carli
+if DJANGO_DB_ENGINE == "LINODEPOSTGRESQL":
+    DB_POSTGRESQL_NAME = os.environ.get("DB_POSTGRESQL_NAME")
+    DB_POSTGRESQL_USER = os.environ.get("DB_POSTGRESQL_USER")
+    DB_POSTGRESQL_PWD = os.environ.get("DB_POSTGRESQL_PWD")
+    DB_POSTGRESQL_HOST = os.environ.get("DB_POSTGRESQL_HOST")
+    DB_POSTGRESQL_PORT = os.environ.get("DB_POSTGRESQL_PORT")
+    # ****************************************
+    DATABASES = {
 
-            'default': {
+        'default': {
 
-                'ENGINE': "django.db.backends.postgresql_psycopg2",
+            'ENGINE': "django.db.backends.postgresql_psycopg2",
 
-                'NAME': DB_POSTGRESQL_NAME,
+            'NAME': DB_POSTGRESQL_NAME,
 
-                'USER': DB_POSTGRESQL_USER,
+            'USER': DB_POSTGRESQL_USER,
 
-                'PASSWORD': DB_POSTGRESQL_PWD,
+            'PASSWORD': DB_POSTGRESQL_PWD,
 
-                'HOST': DB_POSTGRESQL_HOST,
+            'HOST': DB_POSTGRESQL_HOST,
 
-                'PORT': DB_POSTGRESQL_PORT,
-
-            }
+            'PORT': DB_POSTGRESQL_PORT,
 
         }
+
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -189,13 +191,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
-if os.environ.get("SERVER_RUNNING") == "LINODE":
-    # Questo serve per scrivere la mail nella console
-    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'email')
-    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# if os.environ.get("SERVER_RUNNING") == "LINODE":
+#     # Questo serve per scrivere la mail nella console
+#     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+#     EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'email')
+#     # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# else:
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ.get("EMAIL_HOST_SERVER")  # 'smtp.office365.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -240,11 +242,11 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': BASE_DIR / 'debug.log',
             'formatter': 'verbose',
-            'maxBytes': 1024*1024*15, # 15MB
+            'maxBytes': 1024*1024*15,  # 15MB
             'backupCount': 10,
         },
     },
-    
+
     'root': {
         'handlers': ['filerotate'],
         'level': 'DEBUG',
@@ -257,4 +259,3 @@ LOGGING = {
         },
     },
 }
-
