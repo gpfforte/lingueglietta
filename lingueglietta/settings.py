@@ -257,5 +257,14 @@ LOGGING = {
             'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO'),
             'propagate': False,
         },
+        'django.request': {
+            'handlers': ['console', 'filerotate'],
+            'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+        'django.security.DisallowedHost': {
+            'handlers': ['console', 'filerotate'],
+            'propagate': False,
+        },
     },
 }
