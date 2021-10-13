@@ -216,7 +216,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOG_FILE_PATH = os.path.join(BASE_DIR, 'log')
+
 
 LOGGING = {
     'version': 1,
