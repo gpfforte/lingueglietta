@@ -118,7 +118,7 @@ if DJANGO_DB_ENGINE == "POSTGRESQL_DA_HEROKU_SU_HEROKU":
 
 # Connessione a db Postgres non da Heroku Connessione da Carli a DB Postgres su macchina Carli
 if DJANGO_DB_ENGINE == "LINODEPOSTGRESQL":
-    DB_POSTGRESQL_NAME = os.environ.get("DB_POSTGRESQL_NAME")
+    DB_POSTGRESQL_NAME = "lingueglietta"
     DB_POSTGRESQL_USER = os.environ.get("DB_POSTGRESQL_USER")
     DB_POSTGRESQL_PWD = os.environ.get("DB_POSTGRESQL_PWD")
     DB_POSTGRESQL_HOST = os.environ.get("DB_POSTGRESQL_HOST")
@@ -215,7 +215,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 
 LOGGING = {
