@@ -38,12 +38,12 @@
             <hr>
             {% for comment in post.comment_set.all %}
                 <div class=" col-md-12 comment">
-                
-                    <div class="date">Data Commento: <strong> {{ comment.published_date }}</strong>
-                    Autore Commento: <strong> {{ comment.author }}</strong>
-                    </div>
+                    <small class="text-muted"><strong> Data Commento: </strong> {{ comment.date_published }}</small>
+                    <small class="text-muted"><strong> Autore Commento: </strong> {{ comment.author }}</small>
+                   
                     
-                    <p>Commento: <i> {{ comment.content|linebreaks }}</i></p>
+                    
+                    <p><i> {{ comment.content|linebreaks }}</i></p>
                       <hr>  
                 </div>
 

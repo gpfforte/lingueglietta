@@ -10,10 +10,14 @@
           <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" href="#">{{ post.author }}</a>
-              <small class="text-muted">{{ post.date_posted|date:"d F Y" }}</small>
+              <small class="text-muted"><strong> Date Posted: </strong>{{ post.date_posted|date:"d F Y" }}</small>
+              <small class="text-muted"><strong> Date Modifed: </strong>{{ post.date_modified|date:"d F Y" }}</small>
             </div>
             <h2><a class="article-title" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content|truncatewords:10}}</p>
+            <div class= "border border-primary rounded ">
+              <p class="article-content">{{ post.content|truncatewords:10}}</p>
+            </div>
+            <p></p>
           </div>
         </article>
     {% endfor %}
