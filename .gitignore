@@ -1,6 +1,7 @@
 secrets.txt
 __pycache__
 secrets.json
+settings.json
 media
 secrets.txt
 staticfiles
