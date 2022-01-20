@@ -35,15 +35,13 @@
     </header>
     {% block topbar %}
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="#">Site Navigation </a>
+      <a class="navbar-brand" href="{% url 'index' %}">Home</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar-collapse collapse " id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li><a class="nav-link nav-item" href="{% url 'index' %}">Home</a></li>
-
           <li><a class="nav-link nav-item" href="{% url 'poesia' %}">Poesia</a></li>
           <li><a class="nav-link nav-item" href="{% url 'percorsi' %}">Percorsi</a></li>
         </ul>

@@ -149,3 +149,8 @@ def percorsi(request):
     ip_address = get_client_ip(request)
     logger.info(str(ip_address)+"-"+str(request))
     return render(request, 'percorsi.html')
+
+def cappelletta(request):
+    ip_address = get_client_ip(request)
+    logger.info(str(ip_address)+"-"+str(request))
+    return render(request, 'cappelletta.html')

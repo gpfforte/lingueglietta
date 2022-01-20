@@ -18,15 +18,11 @@ from django.urls import path, include
 from blog import views as blog_views
 from django.conf.urls.static import static
 from django.conf import settings
-from users import views as users_view
 from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blog_views.index, name='index'),
-    path('poesia/', blog_views.poesia, name='poesia'),
-    path('percorsi/', blog_views.percorsi, name='percorsi'),
-    path('about/', blog_views.about, name='about'),
     # ...
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
     # ...

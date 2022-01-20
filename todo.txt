@@ -8,6 +8,7 @@ vedere se si può fare in modo che la pagina sia con Footer sempre in fondo e ch
 Rendere email univoca nel sistema altrimenti credo che vada in errore la password reset.
 Come mettere internazionalizzaione nei templates
 
+Fare in modo che la parte più editoriale e meno dinamica abbia una sua app "info"
 
 FATTO
 
