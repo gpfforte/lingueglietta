@@ -46,7 +46,7 @@ class PostDetailView(FormMixin, generic.DetailView):
         ip_address = get_client_ip(self.request)
         logger.info(str(ip_address)+"-"+str(self.request))
         # return reverse('post-list')
-        return reverse('post-detail', kwargs={'pk': self.object.id})
+        return reverse('blog:post-detail', kwargs={'pk': self.object.id})
 
     def get_context_data(self, **kwargs):
         ip_address = get_client_ip(self.request)
@@ -80,7 +80,7 @@ class PostDetailView(FormMixin, generic.DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
-    success_url = reverse_lazy('post-list')
+    success_url = reverse_lazy('blog:post-list')
 
     def form_valid(self, form):
         ip_address = get_client_ip(self.request)
@@ -92,7 +92,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'content']
-    success_url = reverse_lazy('post-list')
+    success_url = reverse_lazy('blog:post-list')
 
     def form_valid(self, form):
         ip_address = get_client_ip(self.request)
@@ -111,7 +111,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = reverse_lazy('post-list')
+    success_url = reverse_lazy('blog:post-list')
 
     def test_func(self):
         ip_address = get_client_ip(self.request)
@@ -132,25 +132,3 @@ def index(request):
     context = {"now": now, "num_visits": num_visits}
     return render(request, 'index.html', context=context)
 
-
-def about(request):
-    ip_address = get_client_ip(request)
-    logger.info(str(ip_address)+"-"+str(request))
-    return render(request, 'about.html', {'title': 'About'})
-
-
-def poesia(request):
-    ip_address = get_client_ip(request)
-    logger.info(str(ip_address)+"-"+str(request))
-    return render(request, 'poesia.html')
-
-
-def percorsi(request):
-    ip_address = get_client_ip(request)
-    logger.info(str(ip_address)+"-"+str(request))
-    return render(request, 'percorsi.html')
-
-def cappelletta(request):
-    ip_address = get_client_ip(request)
-    logger.info(str(ip_address)+"-"+str(request))
-    return render(request, 'cappelletta.html')

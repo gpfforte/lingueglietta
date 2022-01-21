@@ -1,7 +1,7 @@
 from django.urls import path, include, re_path
 
 from . import views
-
+app_name = 'users'   
 urlpatterns = [
     # re_path(r'^$', views.home, name='home'),
     path('signup/', views.signup, name='signup'),

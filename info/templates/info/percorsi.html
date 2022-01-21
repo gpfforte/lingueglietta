@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<h3>Fotografia di Lingueglietta da Satellite</h3>
+<p></p>
+<img src="{% static 'info/percorsi_a_piedi.jpg' %}" width="800" alt="Home Image" usemap="#Satellite">
+<p></p>
+
+
+<map name="Satellite">
+	<area href="{% url 'info:cappelletta' %}" shape="circle" coords="100, 250, 15" alt="Cappelletta">
+	<area href= "{% url 'info:san_rocco' %}" shape="circle" coords="270, 200, 15" alt="Campana di San Rocco">
+	<area href= "{% url 'info:san_pietro' %}" shape="circle" coords="700, 100, 15" alt="San Pietro">
+</map>
+<p>Cliccare nei punti numerati della foto per vedere una immagine di dettaglio</p>
+
+
+
+{% endblock %}

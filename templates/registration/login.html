@@ -25,6 +25,6 @@
   {# Assumes you setup the password_reset view in your URLconf #}
   <p></p>
   <p><a href="{% url 'password_reset' %}">Password Dimenticata?</a></p>
-  Se non hai un account: <a href="{% url 'signup' %}">Registrati</a>
+  Se non hai un account: <a href="{% url 'users:signup' %}">Registrati</a>
   <p></p>
 {% endblock %}

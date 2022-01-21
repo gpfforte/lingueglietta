@@ -33,6 +33,10 @@ urlpatterns += [
 ]
 
 urlpatterns += [
+    path('info/', include('info.urls')),
+]
+
+urlpatterns += [
     path('users/', include('users.urls')),
 ]
 

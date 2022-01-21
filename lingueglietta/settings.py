@@ -53,6 +53,7 @@ ALLOWED_HOSTS = ["www.lingueglietta.it", "www.lingueglietta.com", ".linguegliett
 
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
+    'info.apps.InfoConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
     'django.contrib.admin',
