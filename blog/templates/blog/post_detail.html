@@ -7,43 +7,50 @@
     <div class="media-body">
       <div class="article-metadata">
         <a class="mr-2" href="#">{{ object.author }}</a>
-        <small class="text-muted">{{ object.date_posted|date:"d F Y" }}</small>
-        {% if object.author == user %}
-          <div>
-            <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'blog:post-update' object.id %}">Aggiorna</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:post-delete' object.id %}">Cancella</a>
-          </div>
-        {% endif %}
+        <small class="text-muted"><strong> Date Posted: </strong>{{ post.date_posted|date:"d F Y - G:i" }}</small>
+        <small class="text-muted"><strong> Date Modified: </strong>{{ post.date_modified|date:"d F Y - G:i" }}</small>
+
         
       </div>
       
       <h2 class="article-title">{{ object.title }}</h2>
-      <div class= "border border-primary rounded ">
-      <p class="article-content">{{ object.content|linebreaks }}</p>
+      <div class= "border border-primary rounded bg-light">
+        <p class="article-content">{{ object.content|linebreaks }}</p>
       </div>
+      {% if object.author == user %}
+      <div>
+        <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'blog:post-update' object.id %}">Update</a>
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:post-delete' object.id %}">Delete</a>
+      </div>
+    {% endif %}
+
         {% if user.is_authenticated%}
         <div>
             <form method="POST" class="post-form">{% csrf_token %}
               {%for item in form%}
-              <a style="padding:10px"></a>{{item|as_crispy_field}}
+                <a style="padding:10px"></a>{{item|as_crispy_field}}
               {%endfor%}
-              <button type="submit" class="save btn btn-primary">Invia Commento</button>
+              <button type="submit" class="btn btn-sm btn-primary">Send Comment</button>
             </form>
         </div>
         {% endif%}
         <hr>
-        <h4>Commenti Precedenti</h4>
+        <h4 class="border border-success rounded bg-secondary">Previous Comments</h4>
                 <hr>
-        <div class=" row post_spacing background_design1 ">
+        <div class="row">
             <hr>
             {% for comment in post.comment_set.all %}
-                <div class=" col-md-12 comment">
-                    <small class="text-muted"><strong> Data Commento: </strong> {{ comment.date_published }}</small>
-                    <small class="text-muted"><strong> Autore Commento: </strong> {{ comment.author }}</small>
-                   
-                    
-                    
+                <div class="col-md-12 comment">
+                    <small class="text-muted"><strong> Date Created: </strong> {{ comment.date_published|date:"d F Y - G:i" }}</small>
+                    <small class="text-muted"><strong> Author: </strong> {{ comment.author }}</small>
+
                     <p><i> {{ comment.content|linebreaks }}</i></p>
+                    {% if user == comment.author%}
+                    <div>
+                      <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'blog:comment-update' comment.id %}">Update</a>
+                      <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:comment-delete' comment.id %}">Delete</a>
+                    </div>
+                    {% endif%}
                       <hr>  
                 </div>
 
@@ -52,10 +59,7 @@
             {% endfor %}
         </div>
 
-
-
-
-      <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-sm mt-1 mb-1" class>Back</a>
+      <a href="{% url  'blog:post-list' %}" class="btn btn-dark btn-sm mt-1 mb-1" class>Posts</a>
     </div>
 
   </article>

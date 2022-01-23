@@ -1,0 +1,62 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+{% if post %}
+
+<h1>Title: {{ post.title }}</h1>
+
+<p><strong>Author:</strong> <a href="">{{ post.author }}</a></p> <!-- author detail link not yet defined -->
+<p><strong>Content:</strong></p>
+<p>  {{ post.content }}</p>
+<p><strong>Date Posted:</strong> {{ post.date_posted|date:"Y-m-d H:i:s" }}</p>
+<p><strong>Date Modified:</strong> {{ post.date_modified|date:"Y-m-d H:i:s" }}</p>
+
+
+
+<div style="margin-left:20px;margin-top:20px">
+
+    <h4>Comments</h4>
+
+{% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+            {{ form|crispy}}
+          <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-sm" class>Back</a>
+        <input class = "btn btn-primary btn-sm" type="submit" value="Save">
+    </form>
+{% if post %}
+    {% for comment in post.comment_set.all|dictsortreversed:"date_commented" %}
+      <div class="form-row ">
+        <div class="form-group col-md-6 mb-0">
+          <p><strong>Comment :</strong> {{ comment.comment }}</p>
+        </div>
+        <div class="form-group col-md-3 mb-0">
+          <p><strong>Date Commented :</strong> {{ comment.date_commented|date:"Y-m-d H:i:s" }}</p>
+        </div>
+        <div class="form-group col-md-1 mb-0">
+          <p><strong>Author :</strong> {{ comment.author }}</p>
+        </div>
+        {% if comment.author == user%}
+        <div class="form-group col-md-1 mb-0">
+          <a class = "btn btn-danger btn-sm" href="{% url  'blog:comment-delete' comment.id %}">Delete</a> 
+        </div>        
+        <div class="form-group col-md-1 mb-0">
+          <a class = "btn btn-primary btn-sm" href="{% url  'blog:comment-update' comment.id %}">Update</a> 
+        </div>
+        {% endif%}
+      </div>
+      <hr>
+      {% comment %} <p class="text-muted"><strong>Id:</strong> {{ comment.id }}</p> {% endcomment %}
+    {% endfor %}
+    {% if post.comment_set.all%}
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-sm" class>Back</a>
+    {% endif%}
+{% endif %}
+  </div>
+  
+
+</div>
+
+{% endblock %}

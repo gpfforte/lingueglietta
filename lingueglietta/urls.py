@@ -15,17 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from blog import views as blog_views
+# from blog import views as blog_views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
+from django.views.generic import RedirectView
+from . import views
 
-urlpatterns = [
+urlpatterns = [path('', views.index, name='index'),]
+
+urlpatterns += [
     path('admin/', admin.site.urls),
-    path('', blog_views.index, name='index'),
-    # ...
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
-    # ...
 ]
 
 urlpatterns += [
@@ -39,7 +40,6 @@ urlpatterns += [
 urlpatterns += [
     path('users/', include('users.urls')),
 ]
-
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

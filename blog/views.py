@@ -108,6 +108,22 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+class CommentUpdateView(LoginRequiredMixin, UpdateView):
+    model = Comment
+    # success_url = reverse_lazy('blog:post-list')
+    form_class = CommentForm
+
+    def get_queryset(self, *args, **kwargs):
+        ip_address = get_client_ip(self.request)
+        logger.info(str(ip_address)+"-"+str(self.request))
+        queryset = super().get_queryset()
+        return queryset.filter(author=self.request.user)
+
+    def get_success_url(self):
+        ip_address = get_client_ip(self.request)
+        logger.info(str(ip_address)+"-"+str(self.request))
+        # return reverse('post-list')
+        return reverse('blog:post-detail', kwargs={'pk': self.object.post.id})
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
@@ -121,14 +137,21 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Comment
+    # success_url = reverse_lazy('blog:post-list')
 
-def index(request):
-    ip_address = get_client_ip(request)
-    logger.info(str(ip_address)+"-"+str(request))
-    now = datetime.now()
-    # Number of visits to this view, as counted in the session variable.
-    num_visits = request.session.get('num_visits', 1)
-    request.session['num_visits'] = num_visits + 1
-    context = {"now": now, "num_visits": num_visits}
-    return render(request, 'index.html', context=context)
+    def get_queryset(self):
+        ip_address = get_client_ip(self.request)
+        logger.info(str(ip_address)+"-"+str(self.request))
+        queryset = super().get_queryset()
+        return queryset.filter(author=self.request.user)
+
+    def get_success_url(self):
+        ip_address = get_client_ip(self.request)
+        logger.info(str(ip_address)+"-"+str(self.request))
+        # return reverse('post-list')
+        return reverse('blog:post-detail', kwargs={'pk': self.object.post.id})
+
+
 

@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<form method="post">
+{% csrf_token %}
+    {{ form|crispy}}
+    <p>Are you sure to delete comment: </p>
+    <div class= "border border-primary rounded bg-light">
+      <p>{{ comment.content }} </p> 
+    </div>
+    <p></p>
+    <p>for post with title "{{ comment.post.title }}"?</p>
+  <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-sm" class>Back</a>
+  <input class = "btn btn-danger btn-sm" type="submit" value="Yes, Delete">
+</form>
+{% endblock %}
