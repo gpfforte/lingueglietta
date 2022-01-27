@@ -1,17 +1,16 @@
+from django.http import HttpResponse
 from django.shortcuts import render, reverse
 from datetime import datetime
-from .models import Post, Comment
-from .form import CommentForm
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from blog.models import Post, Comment
+from .forms import PostForm, CommentForm
 from django.views import generic
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.edit import FormMixin
-from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 import logging
-logger = logging.getLogger("lingueglietta")
+logger = logging.getLogger("gpfblog")
 # Create your views here.
 
 
@@ -24,18 +23,12 @@ def get_client_ip(request):
     return ip
 
 
-class PostListView(generic.ListView):
+# Create your views here.
 
+class PostListView(generic.ListView):
     model = Post
     ordering = ['-date_posted']
-    fields = "__all__"
     paginate_by = 10
-
-    def get_context_data(self, **kwargs):
-        ip_address = get_client_ip(self.request)
-        logger.info(str(ip_address)+"-"+str(self.request))
-        context = super(PostListView, self).get_context_data(**kwargs)
-        return context
 
 
 class PostDetailView(FormMixin, generic.DetailView):
@@ -79,8 +72,8 @@ class PostDetailView(FormMixin, generic.DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
     success_url = reverse_lazy('blog:post-list')
+    form_class = PostForm
 
     def form_valid(self, form):
         ip_address = get_client_ip(self.request)
@@ -89,24 +82,17 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
     success_url = reverse_lazy('blog:post-list')
+    form_class = PostForm
 
-    def form_valid(self, form):
+    def get_queryset(self):
         ip_address = get_client_ip(self.request)
         logger.info(str(ip_address)+"-"+str(self.request))
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+        queryset = super().get_queryset()
+        return queryset.filter(author=self.request.user)
 
-    def test_func(self):
-        ip_address = get_client_ip(self.request)
-        logger.info(str(ip_address)+"-"+str(self.request))
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
 
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comment
@@ -125,17 +111,17 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
         # return reverse('post-list')
         return reverse('blog:post-detail', kwargs={'pk': self.object.post.id})
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('blog:post-list')
 
-    def test_func(self):
+    def get_queryset(self):
         ip_address = get_client_ip(self.request)
         logger.info(str(ip_address)+"-"+str(self.request))
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
+        queryset = super().get_queryset()
+        return queryset.filter(author=self.request.user)
+
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
@@ -153,5 +139,65 @@ class CommentDeleteView(LoginRequiredMixin, DeleteView):
         # return reverse('post-list')
         return reverse('blog:post-detail', kwargs={'pk': self.object.post.id})
 
+    # def form_valid(self, form):
+    #     ip_address = get_client_ip(self.request)
+    #     logger.info(str(ip_address)+"-"+str(self.request))
+    #     author = self.request.user
+    #     myform = form.save(commit=False)
+    #     myform.author = author
+    #     form.save()
+    #     return super(PostCreateView, self).form_valid(form)
+    # def get_context_data(self, **kwargs):
+    #     ip_address = get_client_ip(self.request)
+    #     logger.info(str(ip_address)+"-"+str(self.request))
+    #     context = super(PostListView, self).get_context_data(**kwargs)
+    #     return context
+
+        # def get_form_kwargs(self, *args, **kwargs):
+    #     ip_address = get_client_ip(self.request)
+    #     logger.info(str(ip_address)+"-"+str(self.request))
+    #     kwargs = super(PostCreateView, self).get_form_kwargs(*args, **kwargs)
+    #     # kwargs['user'] = self.request.user
+    #     return kwargs
+
+    # def get_initial(self):
+    #     ip_address = get_client_ip(self.request)
+    #     logger.info(str(ip_address)+"-"+str(self.request))
+    #     return {
+    #         'author': self.request.user,
+    #     }
 
 
+# class CommentCreateView(LoginRequiredMixin, CreateView):
+#     model = Comment
+#     success_url = reverse_lazy('blog:post-list')
+#     form_class=CommentForm
+#     post_id=""
+#     def get_initial(self):
+#         ip_address = get_client_ip(self.request)
+#         logger.info(str(ip_address)+"-"+str(self.request))
+#         return {
+#             'author':self.request.user,
+#             'post':self.post_id
+#         }
+#     def get(self, request, *args, **kwargs):
+#         self.post_id=self.kwargs['pk']
+#         return super().get(request, *args, **kwargs)
+
+#     def get_context_data(self, **kwargs):
+#         ip_address = get_client_ip(self.request)
+#         logger.info(str(ip_address)+"-"+str(self.request))
+#         context=super().get_context_data(**kwargs)
+#         context['post']=Post.objects.get(pk=self.post_id)
+#         return context
+
+    # def get_form_kwargs(self, *args, **kwargs):
+    #     kwargs = super(CommentCreateView, self).get_form_kwargs(*args, **kwargs)
+    #     kwargs['post'] = Post.objects.get(pk=self.post_id)
+    #     return kwargs
+        # def get_form_kwargs(self, *args, **kwargs):
+    #     ip_address = get_client_ip(self.request)
+    #     logger.info(str(ip_address)+"-"+str(self.request))
+    #     kwargs = super(PostUpdateView, self).get_form_kwargs(*args, **kwargs)
+    #     kwargs['user'] = self.request.user
+    #     return kwargs
