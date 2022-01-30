@@ -27,9 +27,9 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     date_published = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
-    def get_absolute_url(self):
-        """Returns the url to access a detail record for this book."""
-        return reverse('blog:comment-detail', kwargs={'pk' : self.pk})
+    # def get_absolute_url(self):
+    #     """Returns the url to access a detail record for this book."""
+    #     return reverse('blog:comment-detail', kwargs={'pk' : self.pk})
     
     class Meta:
         ordering = ('-date_published',)
