@@ -25,7 +25,7 @@ from . import views
 urlpatterns = [path('', views.index, name='index'),]
 
 urlpatterns += [
-    path('admin/', admin.site.urls),
+    path('nimda/', admin.site.urls),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
 ]
 
