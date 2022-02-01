@@ -1,9 +1,13 @@
-from django.forms import inlineformset_factory, BaseInlineFormSet, models
+from django.forms import inlineformset_factory, BaseInlineFormSet, models, CharField
 from .models import Post, Comment
 from django.forms.widgets import HiddenInput
 from django import forms
 from .models import Comment
 from django.utils.translation import gettext_lazy as _
+
+
+class FilterForm(forms.Form):
+    search = CharField(required=False, help_text="", label="")
 
 
 class PostForm(models.ModelForm):
