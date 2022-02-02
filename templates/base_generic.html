@@ -103,26 +103,26 @@
     </div>
     <div class="row">
       <div class="col-sm-1">
-    {% block sidebar %}
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+            {% block sidebar %}
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsideCollapse"
-        aria-controls="navbarsideCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse " id="navbarsideCollapse">
-        <nav class="sidebar-sticky">
-          <ul class="navbar-left navbar-nav flex-column">
-            <li><a class="nav-link nav-item" href="{% url 'blog:post-list' %}">Blog</a></li>
-          </ul>
-        </nav>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsideCollapse"
+                aria-controls="navbarsideCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="navbar-collapse collapse " id="navbarsideCollapse">
+                <nav class="sidebar-sticky">
+                  <ul class="navbar-left navbar-nav flex-column">
+                    <li><a class="nav-link nav-item" href="{% url 'blog:post-list' %}">Blog</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </nav>
+
+            {% endblock sidebar%}
       </div>
-    </nav>
 
-    {% endblock sidebar%}
-      </div>
-
-      <div class="col-sm-9">
+      <div class="col-sm-10">
         {% block content %}
 
         {% endblock %}
@@ -154,9 +154,18 @@
     </div>
     <!-- FOOTER -->
     <footer class="footer border border-secondary bg-dark">
-      <h5>
-        <font color="#FFFFFF">@Copyleft 2021 GPF</font>
-      </h5>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <h5 style="color: grey;">@Copyleft 2021 GPF </h5>
+          </div>
+          <div class="col-sm-6 text-right">
+          <p style="color: grey;"> Welcome to this website developed by <em> GPF</em>!</p>
+        </div>
+          <div class="col-sm-1">
+          </div>
+        </div>
+    </div>
     </footer>
   </div>
 

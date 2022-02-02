@@ -35,7 +35,7 @@
   background-color: darkolivegreen;
 }
 
-h1 {
+h1,h2,h3,h4,h5,h6 {
   text-decoration: underline;
 }
 
@@ -86,4 +86,8 @@ td {
 .calendar ul {
   height: 100%;
   padding: 0px 5px 0px 20px;
+}
+
+.description {
+text-align:justify;
 }
