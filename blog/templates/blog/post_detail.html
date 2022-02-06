@@ -2,65 +2,92 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <article class="media content-section">
+
     <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
-    <div class="media-body">
-      <div class="article-metadata">
-        <a class="mr-2" href="#">{{ object.author }}</a>
-        <small class="text-muted"><strong> Date Posted: </strong>{{ post.date_posted|date:"d F Y - G:i" }}</small>
-        <small class="text-muted"><strong> Date Modified: </strong>{{ post.date_modified|date:"d F Y - G:i" }}</small>
-
+    <div class="card bg-light mb-3" >
+      <div class="card-header">
+        <h5 class="card-title">{{ post.title }}</a></h5>
+      </div>
+      <div class="card-body">
         
+        <p class="card-text"><p>{{ object.content|linebreaks }}</p></p>
       </div>
-      
-      <h2 class="article-title">{{ object.title }}</h2>
-      <div class= "border border-primary rounded bg-light">
-        <p class="article-content">{{ object.content|linebreaks }}</p>
-      </div>
-      {% if object.author == user %}
-      <div>
-        <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'blog:post-update' object.id %}">Update</a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:post-delete' object.id %}">Delete</a>
-      </div>
-    {% endif %}
-
-        {% if user.is_authenticated%}
+      <div class="card-footer">
+        <a class="mr-2" href="#">{{ post.author }}</a>
+        <small class="text-muted"><strong> Date Posted: </strong>{{ post.date_posted|date:"d F Y - G:i" }}</small>
+        <small class="text-muted"><strong> Date Modifed: </strong>{{ post.date_modified|date:"d F Y - G:i" }}</small>
+        {% if object.author == user %}
         <div>
-            <form method="POST" class="post-form">{% csrf_token %}
-              {%for item in form%}
-                <a style="padding:10px"></a>{{item|as_crispy_field}}
-              {%endfor%}
-              <button type="submit" class="btn btn-sm btn-primary">Send Comment</button>
-            </form>
+          <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'blog:post-update' object.id %}">Update</a>
+          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:post-delete' object.id %}">Delete</a>
         </div>
-        {% endif%}
-        <hr>
-        <h4 class="border border-success rounded bg-secondary">Previous Comments</h4>
-                <hr>
-        <div class="row">
-            <hr>
-            {% for comment in post.comment_set.all %}
-                <div class="col-md-12 comment">
-                    <small class="text-muted"><strong> Date Created: </strong> {{ comment.date_published|date:"d F Y - G:i" }}</small>
-                    <small class="text-muted"><strong> Author: </strong> {{ comment.author }}</small>
+      {% endif %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-10">
+          <h4 class="  rounded bg-secondary">Comments</h4>
+          <hr>
+      </div>
 
-                    <p><i> {{ comment.content|linebreaks }}</i></p>
-                    {% if user == comment.author%}
-                    <div>
-                      <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'blog:comment-update' comment.id %}">Update</a>
-                      <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:comment-delete' comment.id %}">Delete</a>
-                    </div>
-                    {% endif%}
-                      <hr>  
+    </div>
+        {% if user.is_authenticated%}
+        <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-10">
+              <form method="POST" >{% csrf_token %}
+                {%for item in form%}
+                  <a style="padding:10px"></a>{{item|as_crispy_field}}
+                {%endfor%}
+                <button type="submit" class="btn btn-sm btn-primary">Send Comment</button>
+              </form>
+          </div>
+          
+        </div>
+        <br>
+        {% endif%}
+
+
+  
+
+            {% for comment in post.comment_set.all %}
+            <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10 comment">
+              <div class="card bg-light mb-3" >
+                <div class="card-header">
+                  <h6 class="card-title">Comment:</a></h6>
                 </div>
+                <div class="card-body">
+                  
+                  <p class="card-text"><p><i> {{ comment.content|linebreaks }}</i></p></p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted"><strong> Date Created: </strong> {{ comment.date_published|date:"d F Y - G:i" }}</small>
+                  <small class="text-muted"><strong> Author: </strong> {{ comment.author }}</small>
+                  {% if user == comment.author%}
+                  <div>
+                    <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'blog:comment-update' comment.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:comment-delete' comment.id %}">Delete</a>
+                  </div>
+                  {% endif%}
+                </div>
+              </div>
+              <div class="col-md-1">
+              </div>
+          </div>
+        </div>
 
             {% empty %}
                 <p>Non sono presenti commenti</p>
             {% endfor %}
-        </div>
+        
 
       <a href="{% url  'blog:post-list' %}" class="btn btn-dark btn-sm mt-1 mb-1" class>Posts</a>
-    </div>
 
-  </article>
+
 {% endblock content %}

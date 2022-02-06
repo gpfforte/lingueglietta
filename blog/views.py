@@ -1,3 +1,4 @@
+from contextlib import ContextDecorator
 from django.http import HttpResponse
 from django.shortcuts import render, reverse
 from datetime import datetime
@@ -7,6 +8,8 @@ from .forms import PostForm, CommentForm, FilterForm
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.edit import FormMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
@@ -19,6 +22,13 @@ class PostListView(generic.ListView):
     model = Post
     ordering = ['-date_posted']
     paginate_by = 10
+    mine = False
+
+    def get(self, request, *args, **kwargs):
+        # Questa funzione serve solo a settare correttamente la variabile per indicare se voglio vedere
+        # solo i miei post
+        self.mine = kwargs.get("mine") is not None
+        return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
         search = self.request.GET.get('search')
@@ -26,10 +36,15 @@ class PostListView(generic.ListView):
         if search != None:
             filtro_q.add(Q(title__icontains=search) | Q(
                 content__icontains=search), Q.AND)
-        return Post.objects.filter((filtro_q)).order_by('-date_posted')
+        result = Post.objects.filter((filtro_q)).order_by('-date_posted')
+        if self.mine:
+            result = result.filter(
+                author=self.request.user).order_by('-date_posted')
+        return result
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        # print(context)
         context['form'] = FilterForm(initial={
             'search': self.request.GET.get('search', ''),
         })
@@ -43,6 +58,7 @@ class PostListView(generic.ListView):
 class PostDetailView(FormMixin, generic.DetailView):
     model = Post
     form_class = CommentForm
+    success_message = "Comment by %(author)s saved"
 
     def get_success_url(self):
         # return reverse('post-list')
@@ -54,12 +70,10 @@ class PostDetailView(FormMixin, generic.DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
+        # self.request = request
         self.object = self.get_object()
         form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+        return self.form_valid(form) if form.is_valid() else self.form_invalid(form)
 
     def form_valid(self, form):
         post = self.get_object()
@@ -68,39 +82,53 @@ class PostDetailView(FormMixin, generic.DetailView):
         myform.post = post
         myform.author = author
         form.save()
+        messages.success(self.request, self.success_message %
+                         {"author": author})
         return super(PostDetailView, self).form_valid(form)
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Post
-    success_url = reverse_lazy('blog:post-list')
+    # success_url = reverse_lazy('blog:post-list')
     form_class = PostForm
+    success_message = "Post %(title)s saved"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse_lazy('blog:post-detail', kwargs={'pk': self.object.id})
 
-class PostUpdateView(LoginRequiredMixin, UpdateView):
+
+class PostUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Post
-    success_url = reverse_lazy('blog:post-list')
+    # success_url = reverse_lazy('blog:post-list')
     form_class = PostForm
+    success_message = "Post %(title)s saved"
 
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(author=self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy('blog:post-detail', kwargs={'pk': self.object.id})
 
 
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comment
     # success_url = reverse_lazy('blog:post-list')
     form_class = CommentForm
+    success_message = "Comment by %(author)s saved"
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset()
         return queryset.filter(author=self.request.user)
 
     def get_success_url(self):
+        author = self.request.user
+        messages.success(self.request, self.success_message %
+                         {"author": author})
         # return reverse('post-list')
         return reverse('blog:post-detail', kwargs={'pk': self.object.post.id})
 
@@ -108,6 +136,13 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('blog:post-list')
+    success_message = "Post %(title)s deleted"
+
+    def delete(self, request, *args, **kwargs):
+        obj = self.get_object()
+        title = obj.__dict__["title"]
+        messages.success(self.request, self.success_message % {"title": title})
+        return super(PostDeleteView, self).delete(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -116,6 +151,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
+    success_message = "Comment by %(author)s deleted"
     # success_url = reverse_lazy('blog:post-list')
 
     def get_queryset(self):
@@ -123,7 +159,9 @@ class CommentDeleteView(LoginRequiredMixin, DeleteView):
         return queryset.filter(author=self.request.user)
 
     def get_success_url(self):
-        # return reverse('post-list')
+        author = self.request.user
+        messages.success(self.request, self.success_message %
+                         {"author": author})
         return reverse('blog:post-detail', kwargs={'pk': self.object.post.id})
 
     # def form_valid(self, form):

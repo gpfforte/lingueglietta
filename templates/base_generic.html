@@ -90,8 +90,11 @@
         <p>
           {% if messages %}
             {% for message in messages %}
-              <div class="text-center alert {{ message.tags }} " role="alert">
+              <div class="text-center alert {{ message.tags }} alert-dismissible fade show" role="alert">
                 {{ message|safe }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
             {% endfor %}
           {% endif %}
@@ -113,7 +116,14 @@
               <div class="navbar-collapse collapse " id="navbarsideCollapse">
                 <nav class="sidebar-sticky">
                   <ul class="navbar-left navbar-nav flex-column">
-                    <li><a class="nav-link nav-item" href="{% url 'blog:post-list' %}">Blog</a></li>
+                    {% if user.is_authenticated %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url  'blog:my-post-list' 'mine' %}">My Posts</a>
+                      </li>
+                    {% endif %}
+                    <li>
+                      <a class="nav-link nav-item" href="{% url 'blog:post-list' %}">Posts</a>
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -152,6 +162,8 @@
 
       </div>
     </div>
+
+
     <!-- FOOTER -->
     <footer class="footer border border-secondary bg-dark">
       <div class="container-fluid">
@@ -160,7 +172,7 @@
             <h5 style="color: grey;">@Copyleft 2021 GPF </h5>
           </div>
           <div class="col-sm-6 text-right">
-          <p style="color: grey;"> Welcome to this website developed by <em> GPF</em>!</p>
+          <p style="color: grey;"> Website developed by <em> GPF</em>!</p>
         </div>
           <div class="col-sm-1">
           </div>

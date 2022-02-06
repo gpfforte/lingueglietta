@@ -7,7 +7,7 @@
       <div class="col-sm-1">
         <input type="submit" class="btn btn-primary btn-sm" value="Cerca">
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-11">
         {%for item in form%}
           {{item|as_crispy_field}}
         {%endfor%}
@@ -19,24 +19,24 @@
     <a class = "btn btn-success btn-sm" href="{% url  'blog:post-create' %}">Create Post</a>
   {% endif %}
 
-
+<hr>
   {% if post_list %}
     {% for post in post_list %}
-    <hr>
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
+
+          <div class="card bg-light mb-3" >
+            <div class="card-header">
+              <h5 class="card-title"><a  href="{% url 'blog:post-detail' post.pk %}">{{ post.title }}</a></h5>
+            </div>
+            <div class="card-body">
+              
+              <p class="card-text"><p>{{ post.content|truncatewords:20}}</p></p>
+            </div>
+            <div class="card-footer">
               <a class="mr-2" href="#">{{ post.author }}</a>
               <small class="text-muted"><strong> Date Posted: </strong>{{ post.date_posted|date:"d F Y - G:i" }}</small>
               <small class="text-muted"><strong> Date Modifed: </strong>{{ post.date_modified|date:"d F Y - G:i" }}</small>
             </div>
-            <h2><a class="article-title" href="{% url 'blog:post-detail' post.pk %}">{{ post.title }}</a></h2>
-            <div class= "border border-primary rounded bg-light">
-              <p class="article-content">{{ post.content|truncatewords:10}}</p>
-            </div>
-            <p></p>
           </div>
-        </article>
     {% endfor %}
 
   {% else %}

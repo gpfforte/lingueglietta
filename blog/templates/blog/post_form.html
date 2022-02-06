@@ -1,25 +1,11 @@
 {% extends "base_generic.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
-
-  <form action="" method="post">
+<form method="post">
     {% csrf_token %}
-    {% if form.non_field_errors%}
-    <div class="text-center alert alert-danger " role="alert">
-      {% for error in form.non_field_errors %}
-          {{error}}
-      {% endfor %}
-    </div>
-    {% endif%}
-    <form class="row">
-        {%for item in form%}
-        <a style="padding:10px"></a>{{item|as_crispy_field}}
-        {%endfor%}
-
-        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-sm" class>Back</a>
-      <input type="submit" class="btn btn-primary btn-sm" value="Salva">
-    </form>
-    
-  </form>
-  
+        {{ form|crispy}}
+        <a href="{% url  'blog:post-list' %}" class="btn btn-dark btn-sm mt-1 mb-1" class>Posts</a>
+    <input class = "btn btn-primary btn-sm" type="submit" value="Save">
+</form>
 {% endblock %}
