@@ -3,15 +3,14 @@ Aggiungere profilo all'utente come da tutorial di Corey Schafer con upload immag
 Aggiungere commenti ai post solo da registrati e solo l'utente che li ha scritti può cancellarli o modificarli
 Far vedere solo post e commenti con il flag published a true
 
-Gestire appname per gli URL
 vedere se si può fare in modo che la pagina sia con Footer sempre in fondo e che non dia altri problemi
-Rendere email univoca nel sistema altrimenti credo che vada in errore la password reset.
-Come mettere internazionalizzaione nei templates
 
-Fare in modo che la parte più editoriale e meno dinamica abbia una sua app "info"
 
 FATTO
 
+Fatto - Gestire appname per gli URL
+Fatto - Fare in modo che la parte più editoriale e meno dinamica abbia una sua app "info"
+Fatto - Rendere email univoca nel sistema altrimenti credo che vada in errore la password reset.
 Fatto - Far vedere commenti nei dettagli
 Fatto - Fare cambio password oltre al reset
 Fatto - Fare form di registrazione con invio email per confermare indirizzo email
