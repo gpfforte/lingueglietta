@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.utils.translation import ugettext as _
 
 from django.http import HttpResponse
+from django.http import HttpResponseNotFound
 from django.contrib.auth import login, authenticate
 from .forms import SignupForm
 from django.contrib.sites.shortcuts import get_current_site
@@ -15,9 +16,12 @@ from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 import logging
+from django.template import loader
 logger = logging.getLogger("lingueglietta")
 
 def signup(request):
+    template = loader.get_template('users/404.html')
+    return HttpResponseNotFound(template.render())
     logger.info(str(request))
     if request.method == 'POST':
         form = SignupForm(request.POST)

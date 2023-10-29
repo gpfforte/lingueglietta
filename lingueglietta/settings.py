@@ -46,7 +46,7 @@ else:
 
 
 ALLOWED_HOSTS = ["www.lingueglietta.it", "www.lingueglietta.com", ".lingueglietta.com", ".lingueglietta.it",
-                 "172.104.245.4", "localhost", "lingueglietta.herokuapp.com", "lingueglietta.com", "lingueglietta.it"]
+                 "172.104.245.4", "localhost","127.0.0.1", "lingueglietta.herokuapp.com", "lingueglietta.com", "lingueglietta.it"]
 
 
 # Application definition
