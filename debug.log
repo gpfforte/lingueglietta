@@ -1,0 +1,441 @@
+INFO 2024-09-08 15:18:01,680 autoreload 8379 124316415929216 Watching for file changes with StatReloader
+INFO 2024-09-08 15:18:31,113 autoreload 8379 124316415929216 /home/gpf/Documents/Progetti/Django/lingueglietta/users/views.py changed, reloading.
+INFO 2024-09-08 15:18:31,414 autoreload 8483 128057703574400 Watching for file changes with StatReloader
+INFO 2024-09-08 15:19:35,309 autoreload 8483 128057703574400 /home/gpf/Documents/Progetti/Django/lingueglietta/users/views.py changed, reloading.
+INFO 2024-09-08 15:19:35,666 autoreload 8604 124472408030080 Watching for file changes with StatReloader
+INFO 2024-09-08 15:20:07,670 autoreload 8746 135429362408320 Watching for file changes with StatReloader
+INFO 2024-09-08 15:20:33,556 middleware 8746 135429303043776 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 15:20:33,557 middleware 8746 135429303043776 Running index view
+INFO 2024-09-08 15:20:33,685 middleware 8746 135429303043776 127.0.0.1-<WSGIRequest: GET '/static/css/styles.css'>
+WARNING 2024-09-08 15:20:33,686 log 8746 135429303043776 Not Found: /static/css/styles.css
+INFO 2024-09-08 15:20:33,707 middleware 8746 135429303043776 127.0.0.1-<WSGIRequest: GET '/static/blog/Header1.jpg'>
+INFO 2024-09-08 15:20:33,708 middleware 8746 135429292558016 127.0.0.1-<WSGIRequest: GET '/static/blog/stemma_lingueglietta.jpg'>
+WARNING 2024-09-08 15:20:33,707 log 8746 135429303043776 Not Found: /static/blog/Header1.jpg
+WARNING 2024-09-08 15:20:33,709 log 8746 135429292558016 Not Found: /static/blog/stemma_lingueglietta.jpg
+INFO 2024-09-08 15:20:33,759 middleware 8746 135429303043776 127.0.0.1-<WSGIRequest: GET '/static/css/styles.css'>
+WARNING 2024-09-08 15:20:33,760 log 8746 135429303043776 Not Found: /static/css/styles.css
+INFO 2024-09-08 15:20:49,388 middleware 8746 135429303043776 127.0.0.1-<WSGIRequest: GET '/accounts/login/?next=/'>
+INFO 2024-09-08 15:20:49,388 middleware 8746 135429303043776 Running view view
+ERROR 2024-09-08 15:20:49,395 log 8746 135429303043776 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1067, in render
+    output = self.filter_expression.resolve(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 745, in resolve
+    new_obj = func(obj, *arg_vals)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/crispy_forms/templatetags/crispy_forms_filters.py", line 58, in as_crispy_form
+    template = uni_form_template(template_pack)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/crispy_forms/templatetags/crispy_forms_filters.py", line 21, in uni_form_template
+    return get_template("%s/uni_form.html" % template_pack)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: bootstrap4/uni_form.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/backends/django.py", line 109, in render
+    reraise(exc, self.backend)
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/backends/django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: bootstrap4/uni_form.html
+INFO 2024-09-08 15:20:49,437 middleware 8746 135429303043776 127.0.0.1-<WSGIRequest: GET '/favicon.ico'>
+WARNING 2024-09-08 15:20:49,437 log 8746 135429303043776 Not Found: /favicon.ico
+INFO 2024-09-08 16:26:13,398 autoreload 13203 137389372889984 Watching for file changes with StatReloader
+INFO 2024-09-08 16:26:18,498 middleware 13203 137389313885888 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:26:18,498 middleware 13203 137389313885888 Running index view
+INFO 2024-09-08 16:26:18,637 middleware 13203 137389313885888 127.0.0.1-<WSGIRequest: GET '/static/css/styles.css'>
+INFO 2024-09-08 16:26:18,638 middleware 13203 137389223708352 127.0.0.1-<WSGIRequest: GET '/static/blog/stemma_lingueglietta.jpg'>
+INFO 2024-09-08 16:26:18,639 middleware 13203 137389303400128 127.0.0.1-<WSGIRequest: GET '/static/blog/Header1.jpg'>
+WARNING 2024-09-08 16:26:18,644 log 13203 137389313885888 Not Found: /static/css/styles.css
+WARNING 2024-09-08 16:26:18,645 log 13203 137389223708352 Not Found: /static/blog/stemma_lingueglietta.jpg
+WARNING 2024-09-08 16:26:18,646 log 13203 137389303400128 Not Found: /static/blog/Header1.jpg
+INFO 2024-09-08 16:26:18,718 middleware 13203 137389303400128 127.0.0.1-<WSGIRequest: GET '/static/css/styles.css'>
+WARNING 2024-09-08 16:26:18,719 log 13203 137389303400128 Not Found: /static/css/styles.css
+INFO 2024-09-08 16:26:23,319 middleware 13203 137389303400128 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:26:23,319 middleware 13203 137389303400128 Running index view
+INFO 2024-09-08 16:26:23,408 middleware 13203 137389303400128 127.0.0.1-<WSGIRequest: GET '/static/css/styles.css'>
+INFO 2024-09-08 16:26:23,409 middleware 13203 137389223708352 127.0.0.1-<WSGIRequest: GET '/static/blog/Header1.jpg'>
+INFO 2024-09-08 16:26:23,410 middleware 13203 137389313885888 127.0.0.1-<WSGIRequest: GET '/static/blog/stemma_lingueglietta.jpg'>
+WARNING 2024-09-08 16:26:23,409 log 13203 137389303400128 Not Found: /static/css/styles.css
+WARNING 2024-09-08 16:26:23,411 log 13203 137389223708352 Not Found: /static/blog/Header1.jpg
+WARNING 2024-09-08 16:26:23,411 log 13203 137389313885888 Not Found: /static/blog/stemma_lingueglietta.jpg
+INFO 2024-09-08 16:26:23,692 middleware 13203 137389313885888 127.0.0.1-<WSGIRequest: GET '/static/css/styles.css'>
+WARNING 2024-09-08 16:26:23,692 log 13203 137389313885888 Not Found: /static/css/styles.css
+INFO 2024-09-08 16:26:23,712 middleware 13203 137389313885888 127.0.0.1-<WSGIRequest: GET '/static/favicon.ico'>
+WARNING 2024-09-08 16:26:23,713 log 13203 137389313885888 Not Found: /static/favicon.ico
+INFO 2024-09-08 16:27:33,412 autoreload 13464 134658895567744 Watching for file changes with StatReloader
+INFO 2024-09-08 16:27:35,746 middleware 13464 134658765358784 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:27:35,746 middleware 13464 134658765358784 Running index view
+INFO 2024-09-08 16:27:41,199 middleware 13464 134658754873024 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:27:41,199 middleware 13464 134658754873024 Running index view
+INFO 2024-09-08 16:28:29,153 autoreload 13695 138500140280704 Watching for file changes with StatReloader
+INFO 2024-09-08 16:28:32,007 middleware 13695 138500009625280 127.0.0.1-<WSGIRequest: GET '/accounts/login/?next=/'>
+INFO 2024-09-08 16:28:32,008 middleware 13695 138500009625280 Running view view
+ERROR 2024-09-08 16:28:32,027 log 13695 138500009625280 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1067, in render
+    output = self.filter_expression.resolve(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 745, in resolve
+    new_obj = func(obj, *arg_vals)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/crispy_forms/templatetags/crispy_forms_filters.py", line 58, in as_crispy_form
+    template = uni_form_template(template_pack)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/crispy_forms/templatetags/crispy_forms_filters.py", line 21, in uni_form_template
+    return get_template("%s/uni_form.html" % template_pack)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: bootstrap4/uni_form.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/backends/django.py", line 109, in render
+    reraise(exc, self.backend)
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/backends/django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: bootstrap4/uni_form.html
+INFO 2024-09-08 16:28:32,086 middleware 13695 138500009625280 127.0.0.1-<WSGIRequest: GET '/favicon.ico'>
+WARNING 2024-09-08 16:28:32,088 log 13695 138500009625280 Not Found: /favicon.ico
+INFO 2024-09-08 16:28:35,247 middleware 13695 138500009625280 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:28:35,248 middleware 13695 138500009625280 Running index view
+INFO 2024-09-08 16:28:38,170 middleware 13695 138500009625280 127.0.0.1-<WSGIRequest: GET '/accounts/login/?next=/'>
+INFO 2024-09-08 16:28:38,171 middleware 13695 138500009625280 Running view view
+ERROR 2024-09-08 16:28:38,177 log 13695 138500009625280 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 1067, in render
+    output = self.filter_expression.resolve(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/base.py", line 745, in resolve
+    new_obj = func(obj, *arg_vals)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/crispy_forms/templatetags/crispy_forms_filters.py", line 58, in as_crispy_form
+    template = uni_form_template(template_pack)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/crispy_forms/templatetags/crispy_forms_filters.py", line 21, in uni_form_template
+    return get_template("%s/uni_form.html" % template_pack)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: bootstrap4/uni_form.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/backends/django.py", line 109, in render
+    reraise(exc, self.backend)
+  File "/home/gpf/Documents/Progetti/Django/venv-django4/lib/python3.12/site-packages/django/template/backends/django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: bootstrap4/uni_form.html
+INFO 2024-09-08 16:31:15,843 autoreload 13695 138500140280704 /home/gpf/Documents/Progetti/Django/lingueglietta/lingueglietta/settings.py changed, reloading.
+INFO 2024-09-08 16:31:16,200 autoreload 14699 139939847293824 Watching for file changes with StatReloader
+INFO 2024-09-08 16:31:22,433 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:31:22,433 middleware 14699 139939788359360 Running index view
+INFO 2024-09-08 16:31:24,743 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/posts/'>
+INFO 2024-09-08 16:31:24,743 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:31:26,180 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/info/poesia/'>
+INFO 2024-09-08 16:31:26,181 middleware 14699 139939788359360 Running poesia view
+INFO 2024-09-08 16:31:26,889 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/info/percorsi/'>
+INFO 2024-09-08 16:31:26,890 middleware 14699 139939788359360 Running percorsi view
+INFO 2024-09-08 16:31:29,036 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/info/about/'>
+INFO 2024-09-08 16:31:29,036 middleware 14699 139939788359360 Running about view
+INFO 2024-09-08 16:31:30,605 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/info/percorsi/'>
+INFO 2024-09-08 16:31:30,605 middleware 14699 139939788359360 Running percorsi view
+INFO 2024-09-08 16:31:33,580 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/info/san_rocco/'>
+INFO 2024-09-08 16:31:33,581 middleware 14699 139939788359360 Running san_rocco view
+INFO 2024-09-08 16:31:37,928 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/posts/'>
+INFO 2024-09-08 16:31:37,928 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:31:39,273 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:31:39,274 middleware 14699 139939788359360 Running index view
+INFO 2024-09-08 16:31:41,969 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/accounts/login/?next=/'>
+INFO 2024-09-08 16:31:41,969 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:31:49,374 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: POST '/accounts/login/'>
+INFO 2024-09-08 16:31:49,375 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:31:49,987 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:31:49,987 middleware 14699 139939788359360 Running index view
+INFO 2024-09-08 16:31:53,273 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/myposts/mine'>
+INFO 2024-09-08 16:31:53,273 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:31:54,676 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/posts/'>
+INFO 2024-09-08 16:31:54,677 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:31:55,947 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/myposts/mine'>
+INFO 2024-09-08 16:31:55,948 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:31:59,742 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/post/create'>
+INFO 2024-09-08 16:31:59,742 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:32:06,302 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: POST '/blog/post/create'>
+INFO 2024-09-08 16:32:06,303 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:32:06,332 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/post/1'>
+INFO 2024-09-08 16:32:06,333 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:32:12,391 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: POST '/blog/post/1'>
+INFO 2024-09-08 16:32:12,392 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:32:12,443 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/post/1'>
+INFO 2024-09-08 16:32:12,444 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:32:15,868 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/myposts/mine'>
+INFO 2024-09-08 16:32:15,868 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:32:17,968 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/post/1'>
+INFO 2024-09-08 16:32:17,969 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:32:24,733 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: POST '/blog/post/1'>
+INFO 2024-09-08 16:32:24,734 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:32:24,760 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/post/1'>
+INFO 2024-09-08 16:32:24,760 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:32:34,481 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/accounts/logout/?next=/'>
+INFO 2024-09-08 16:32:34,482 middleware 14699 139939788359360 Running view view
+WARNING 2024-09-08 16:32:34,483 base 14699 139939788359360 Method Not Allowed (GET): /accounts/logout/
+WARNING 2024-09-08 16:32:34,484 log 14699 139939788359360 Method Not Allowed: /accounts/logout/
+INFO 2024-09-08 16:35:54,592 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/accounts/logout/?next=/'>
+INFO 2024-09-08 16:35:54,592 middleware 14699 139939788359360 Running view view
+WARNING 2024-09-08 16:35:54,593 base 14699 139939788359360 Method Not Allowed (GET): /accounts/logout/
+WARNING 2024-09-08 16:35:54,594 log 14699 139939788359360 Method Not Allowed: /accounts/logout/
+INFO 2024-09-08 16:35:58,553 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/blog/post/1'>
+INFO 2024-09-08 16:35:58,553 middleware 14699 139939788359360 Running view view
+INFO 2024-09-08 16:36:13,655 middleware 14699 139939788359360 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:36:13,656 middleware 14699 139939788359360 Running index view
+INFO 2024-09-08 16:40:37,674 autoreload 16067 123561562053504 Watching for file changes with StatReloader
+INFO 2024-09-08 16:40:38,121 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:40:38,122 middleware 16067 123561505195712 Running index view
+INFO 2024-09-08 16:41:38,991 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: GET '/accounts/logout/?next=/'>
+INFO 2024-09-08 16:41:38,992 middleware 16067 123561505195712 Running view view
+WARNING 2024-09-08 16:41:38,992 base 16067 123561505195712 Method Not Allowed (GET): /accounts/logout/
+WARNING 2024-09-08 16:41:38,993 log 16067 123561505195712 Method Not Allowed: /accounts/logout/
+INFO 2024-09-08 16:43:00,374 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:43:00,374 middleware 16067 123561505195712 Running index view
+INFO 2024-09-08 16:43:42,361 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:43:42,361 middleware 16067 123561505195712 Running index view
+INFO 2024-09-08 16:43:45,144 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: POST '/accounts/logout/'>
+INFO 2024-09-08 16:43:45,146 middleware 16067 123561505195712 Running view view
+INFO 2024-09-08 16:43:49,067 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: GET '/accounts/login/'>
+INFO 2024-09-08 16:43:49,067 middleware 16067 123561505195712 Running view view
+INFO 2024-09-08 16:43:59,421 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: POST '/accounts/login/'>
+INFO 2024-09-08 16:43:59,422 middleware 16067 123561505195712 Running view view
+INFO 2024-09-08 16:44:00,048 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:44:00,048 middleware 16067 123561505195712 Running index view
+INFO 2024-09-08 16:44:58,995 middleware 16067 123561484224192 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:44:58,996 middleware 16067 123561484224192 Running index view
+INFO 2024-09-08 16:45:50,962 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:45:50,962 middleware 16067 123561505195712 Running index view
+INFO 2024-09-08 16:45:56,692 middleware 16067 123561505195712 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:45:56,692 middleware 16067 123561505195712 Running index view
+INFO 2024-09-08 16:46:29,982 autoreload 17127 132114450865024 Watching for file changes with StatReloader
+INFO 2024-09-08 16:46:34,556 middleware 17127 132114391500480 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:46:34,558 middleware 17127 132114391500480 Running index view
+INFO 2024-09-08 16:46:39,917 middleware 17127 132114391500480 127.0.0.1-<WSGIRequest: POST '/accounts/logout/'>
+INFO 2024-09-08 16:46:39,917 middleware 17127 132114391500480 Running view view
+INFO 2024-09-08 16:46:41,450 middleware 17127 132114391500480 127.0.0.1-<WSGIRequest: GET '/accounts/login/'>
+INFO 2024-09-08 16:46:41,451 middleware 17127 132114391500480 Running view view
+INFO 2024-09-08 16:46:47,676 middleware 17127 132114391500480 127.0.0.1-<WSGIRequest: POST '/accounts/login/'>
+INFO 2024-09-08 16:46:47,677 middleware 17127 132114391500480 Running view view
+INFO 2024-09-08 16:46:48,285 middleware 17127 132114391500480 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2024-09-08 16:46:48,286 middleware 17127 132114391500480 Running index view
+INFO 2025-11-15 00:10:46,684 autoreload 48427 140303118076864 Watching for file changes with StatReloader
+INFO 2025-11-15 00:11:11,166 autoreload 48729 140197826259904 Watching for file changes with StatReloader
+INFO 2025-11-15 00:11:58,258 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2025-11-15 00:11:58,260 middleware 48729 140197766620864 Running index view
+INFO 2025-11-15 00:12:00,933 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/about/'>
+INFO 2025-11-15 00:12:00,933 middleware 48729 140197766620864 Running about view
+INFO 2025-11-15 00:12:03,077 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/percorsi/'>
+INFO 2025-11-15 00:12:03,078 middleware 48729 140197766620864 Running percorsi view
+INFO 2025-11-15 00:12:04,537 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/poesia/'>
+INFO 2025-11-15 00:12:04,538 middleware 48729 140197766620864 Running poesia view
+INFO 2025-11-15 00:12:06,731 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/about/'>
+INFO 2025-11-15 00:12:06,732 middleware 48729 140197766620864 Running about view
+INFO 2025-11-15 00:12:11,348 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/blog/posts/'>
+INFO 2025-11-15 00:12:11,348 middleware 48729 140197766620864 Running view view
+INFO 2025-11-15 00:12:13,388 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/'>
+INFO 2025-11-15 00:12:13,388 middleware 48729 140197766620864 Running index view
+INFO 2025-11-15 00:12:14,818 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/poesia/'>
+INFO 2025-11-15 00:12:14,819 middleware 48729 140197766620864 Running poesia view
+INFO 2025-11-15 00:12:16,831 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/percorsi/'>
+INFO 2025-11-15 00:12:16,832 middleware 48729 140197766620864 Running percorsi view
+INFO 2025-11-15 00:12:19,147 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/about/'>
+INFO 2025-11-15 00:12:19,147 middleware 48729 140197766620864 Running about view
+INFO 2025-11-15 00:12:30,396 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/accounts/login/?next=/info/about/'>
+INFO 2025-11-15 00:12:30,397 middleware 48729 140197766620864 Running view view
+INFO 2025-11-15 00:12:39,206 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: POST '/accounts/login/'>
+INFO 2025-11-15 00:12:39,207 middleware 48729 140197766620864 Running view view
+INFO 2025-11-15 00:12:44,076 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/poesia/'>
+INFO 2025-11-15 00:12:44,077 middleware 48729 140197766620864 Running poesia view
+INFO 2025-11-15 00:12:47,817 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/percorsi/'>
+INFO 2025-11-15 00:12:47,818 middleware 48729 140197766620864 Running percorsi view
+INFO 2025-11-15 00:12:48,780 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/poesia/'>
+INFO 2025-11-15 00:12:48,780 middleware 48729 140197766620864 Running poesia view
+INFO 2025-11-15 00:12:49,462 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/blog/posts/'>
+INFO 2025-11-15 00:12:49,462 middleware 48729 140197766620864 Running view view
+INFO 2025-11-15 00:12:51,556 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/percorsi/'>
+INFO 2025-11-15 00:12:51,557 middleware 48729 140197766620864 Running percorsi view
+INFO 2025-11-15 00:12:53,908 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/poesia/'>
+INFO 2025-11-15 00:12:53,908 middleware 48729 140197766620864 Running poesia view
+INFO 2025-11-15 00:12:55,914 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/blog/posts/'>
+INFO 2025-11-15 00:12:55,914 middleware 48729 140197766620864 Running view view
+INFO 2025-11-15 00:13:00,296 middleware 48729 140197766620864 127.0.0.1-<WSGIRequest: GET '/info/percorsi/'>
+INFO 2025-11-15 00:13:00,296 middleware 48729 140197766620864 Running percorsi view
+INFO 2025-11-15 00:13:06,006 middleware 48729 140197757179584 127.0.0.1-<WSGIRequest: GET '/info/san_rocco/'>
+INFO 2025-11-15 00:13:06,006 middleware 48729 140197757179584 Running san_rocco view
+INFO 2025-11-15 00:13:19,194 middleware 48729 140197757179584 127.0.0.1-<WSGIRequest: GET '/blog/posts/'>
+INFO 2025-11-15 00:13:19,194 middleware 48729 140197757179584 Running view view
+INFO 2025-11-15 18:38:29,677 middleware 9 139711709756288 172.18.0.1-<WSGIRequest: GET '/'>
+INFO 2025-11-15 18:38:29,690 middleware 9 139711709756288 Running index view
+INFO 2025-11-15 18:38:36,733 middleware 9 139711709756288 172.18.0.1-<WSGIRequest: GET '/info/poesia/'>
+INFO 2025-11-15 18:38:36,734 middleware 9 139711709756288 Running poesia view
+INFO 2025-11-15 18:38:37,502 middleware 9 139711709756288 172.18.0.1-<WSGIRequest: GET '/info/percorsi/'>
+INFO 2025-11-15 18:38:37,502 middleware 9 139711709756288 Running percorsi view
+INFO 2025-11-15 18:38:38,579 middleware 9 139711709756288 172.18.0.1-<WSGIRequest: GET '/info/about/'>
+INFO 2025-11-15 18:38:38,580 middleware 9 139711709756288 Running about view
+INFO 2025-11-15 18:38:39,879 middleware 9 139711709756288 172.18.0.1-<WSGIRequest: GET '/'>
+INFO 2025-11-15 18:38:39,880 middleware 9 139711709756288 Running index view
+INFO 2025-11-15 21:20:52,188 middleware 9 139841140235136 172.18.0.1-<WSGIRequest: GET '/'>
+INFO 2025-11-15 21:20:52,197 middleware 9 139841140235136 Running index view
+INFO 2025-11-15 21:28:36,066 middleware 9 139841140235136 172.18.0.1-<WSGIRequest: GET '/'>
+INFO 2025-11-15 21:28:36,067 middleware 9 139841140235136 Running index view
+INFO 2025-11-15 21:28:38,634 middleware 9 139841140235136 172.18.0.1-<WSGIRequest: GET '/info/poesia/'>
+INFO 2025-11-15 21:28:38,635 middleware 9 139841140235136 Running poesia view
+INFO 2025-11-15 21:28:39,762 middleware 9 139841140235136 172.18.0.1-<WSGIRequest: GET '/blog/posts/'>
+INFO 2025-11-15 21:28:39,763 middleware 9 139841140235136 Running view view

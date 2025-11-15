@@ -8,5 +8,5 @@ staticfiles
 .env
 *.bak
 db.sqlite3
-*.log
+*.log.*
 
