@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:16
+    container_name: lingueglietta_db
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${LINGUEGLIETTA_POSTGRES_DB}
+      - POSTGRES_USER=${LINGUEGLIETTA_POSTGRES_USER}
+      - POSTGRES_PASSWORD=${LINGUEGLIETTA_POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - lingueglietta_network
+
+  web:
+    build: .
+    container_name: lingueglietta_web
+    command: >
+      sh -c "python manage.py migrate &&
+             gunicorn lingueglietta.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    restart: always
+    environment:
+      - SECRET_KEY=${LINGUEGLIETTA_SECRET_KEY}
+      - DJANGO_DEBUG_KEY=True
+      - DJANGO_DB_ENGINE=DOCKERPOSTGRESQL
+      - POSTGRES_DB=${LINGUEGLIETTA_POSTGRES_DB}
+      - POSTGRES_USER=${LINGUEGLIETTA_POSTGRES_USER}
+      - POSTGRES_PASSWORD=${LINGUEGLIETTA_POSTGRES_PASSWORD}
+      - POSTGRES_DB_HOST=db
+      - POSTGRES_DB_PORT=5432
+    depends_on:
+      - db
+    networks:
+      - lingueglietta_network
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+
+
+networks:
+  lingueglietta_network:
+    driver: bridge

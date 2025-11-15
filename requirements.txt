@@ -33,7 +33,7 @@ multidict==6.0.5
 packaging==24.1
 pillow==10.4.0
 postgrest==0.16.11
-psycopg2-binary==2.9.9
+psycopg2-binary
 pycodestyle==2.12.1
 pydantic==2.9.0
 pydantic_core==2.23.2

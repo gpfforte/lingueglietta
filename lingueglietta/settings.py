@@ -45,9 +45,20 @@ else:
     DEBUG = False
 
 
-ALLOWED_HOSTS = ["www.lingueglietta.it", "www.lingueglietta.com", ".lingueglietta.com", ".lingueglietta.it",
-                 "172.104.245.4", "localhost","127.0.0.1", "lingueglietta.herokuapp.com", "lingueglietta.com", "lingueglietta.it"]
+# Leggi gli host consentiti dalla variabile d'ambiente.
+# Esempio: "www.sito.it,sito.it,localhost"
+allowed_hosts_str = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,www.lingueglietta.it,www.lingueglietta.com, \
+                                   lingueglietta.it,lingueglietta.com')
+ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_str.split(',')]
+# ... altre impostazioni
 
+CSRF_TRUSTED_ORIGINS_str = os.environ.get('CSRF_TRUSTED_ORIGINS', '')
+if CSRF_TRUSTED_ORIGINS_str:
+    CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in CSRF_TRUSTED_ORIGINS_str.split(',')]
+
+# Per essere sicuri che Django rispetti gli header del proxy
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
@@ -121,7 +132,7 @@ if DJANGO_DB_ENGINE == "POSTGRESQL_DA_HEROKU_SU_HEROKU":
 
 # Connessione a db Postgres non da Heroku Connessione da Carli a DB Postgres su macchina Carli
 if DJANGO_DB_ENGINE == "LINODEPOSTGRESQL":
-    DB_POSTGRESQL_NAME = "lingueglietta"
+    DB_POSTGRESQL_NAME = os.environ.get("DB_POSTGRESQL_NAME")
     DB_POSTGRESQL_USER = os.environ.get("DB_POSTGRESQL_USER")
     DB_POSTGRESQL_PWD = os.environ.get("DB_POSTGRESQL_PWD")
     DB_POSTGRESQL_HOST = os.environ.get("DB_POSTGRESQL_HOST")
@@ -146,6 +157,26 @@ if DJANGO_DB_ENGINE == "LINODEPOSTGRESQL":
         }
 
     }
+# Configurazione per il database in Docker via Docker Compose
+if DJANGO_DB_ENGINE == "DOCKERPOSTGRESQL":
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('POSTGRES_DB_HOST'), # Questo sarà 'db', il nome del servizio in docker-compose
+        'PORT': os.environ.get('POSTGRES_DB_PORT'),
+    }
+
+# Assicurati che ALLOWED_HOSTS includa l'host per Docker se necessario
+if 'gpfblog_web' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('gpfblog_web')
+
+# In un ambiente containerizzato, è meglio usare '0.0.0.0' per accettare connessioni
+# da qualsiasi IP (incluso il gateway di Docker).
+# Fai attenzione in produzione, dovresti avere un reverse proxy (es. Nginx) davanti.
+if not DEBUG and '*' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('0.0.0.0')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
