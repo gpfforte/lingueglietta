@@ -10,3 +10,4 @@ staticfiles
 db.sqlite3
 *.log.*
 *.log
+requirements.old
