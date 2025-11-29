@@ -10,11 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import json
 import os
 from pathlib import Path
-import json
-from django.contrib.messages import constants as message_constants
+
 import dj_database_url
+from django.contrib.messages import constants as message_constants
 
 MESSAGE_TAGS = {
     message_constants.DEBUG: 'alert-primary',
@@ -273,7 +274,7 @@ LOGGING = {
         'filerotate': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR / 'debug.log',
+            'filename': BASE_DIR / 'logs' / 'debug_lingueglietta.log',
             'formatter': 'verbose',
             'maxBytes': 1024*1024*15,  # 15MB
             'backupCount': 10,
